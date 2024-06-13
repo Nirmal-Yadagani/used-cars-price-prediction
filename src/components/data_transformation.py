@@ -1,14 +1,16 @@
 import os
 import sys
-from src.utils import save_object
+from dataclasses import dataclass
+
 import pandas as pd
-from src.exception import CustomException
-from src.logger import logging
+import numpy as np
 from sklearn.preprocessing import TargetEncoder, OneHotEncoder, OrdinalEncoder,  MinMaxScaler
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
-from dataclasses import dataclass
-import numpy as np
+
+from src.exception import CustomException
+from src.logger import logging
+from src.utils import save_object
 
 @dataclass
 class DataTransformationConfig:
@@ -82,9 +84,9 @@ class DataTransformation:
             target_features_train_df = train_df[target_column_name]
             target_features_test_df = test_df[target_column_name]
 
-            logging.info("applying preprocessor object on train and test date.")
+            logging.info("applying preprocessor object on train and test data.")
             input_features_train_array = preprocessor_object.fit_transform(input_features_train_df, target_features_train_df)
-            input_features_test_array = preprocessor_object.transform(input_features_test_df, target_features_test_df)
+            input_features_test_array = preprocessor_object.transform(input_features_test_df)
 
             train_arr = np.c_[input_features_train_array, np.array(target_features_train_df)]
             test_arr = np.c_[input_features_test_array, np.array(target_features_test_df)]
