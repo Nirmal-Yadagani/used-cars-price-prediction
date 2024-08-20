@@ -4,8 +4,12 @@ import pandas as pd
 from src.utils import load_object
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 
+
 # Define the Streamlit UI
 st.title('Used Car Price Predictor')
+
+# Define the Streamlit UI Wallpaper
+st.image('wallpaper.jfif',caption='Estimate you cars resale value',width=300)
 
 # Input fields for numerical features
 st.sidebar.header('Input Features')
