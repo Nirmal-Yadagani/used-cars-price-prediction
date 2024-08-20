@@ -4,4 +4,5 @@ scikit-learn
 matplotlib
 xgboost
 catboost
+streamlit
 #-e .
